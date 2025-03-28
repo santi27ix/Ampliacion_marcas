@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>MJ1</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='utilidades1.js'></script>
+    <script>
+        function cargarDatos() 
+        {
+            setValue("Edad2",parseInt(getValue("inp_Edad2"))- 2 );
+            setValue("inp_Edad2",parseInt(getValue("Edad2"))- 2 );
+            setValue("Resul_Disco",getValue("Disco"));
+            setValue("FIN_N_unidades",getValue("N_unidades"));
+            setValue("Edad1",parseInt(getValue("Edad1"))+ 1);   
+            setValue("inp_Edad1",parseInt(getValue("Edad1"))+ 1);    
+            }
+            </script>
+</head>
+<body onload="cargarDatos()">
+    
+    <div>
+        <table border="2">
+            <tr>
+                <td>
+        <h1>DATA</h1>
+        <form action="jacko_01.html">
+        <label for="Edad1">Edad1 </label><br>
+        <input type="number" id="inp_Edad1" name="Edad1" value=""><br>
+        <label for="Edad2">Edad2</label><br>
+        <input type="number" id="inp_Edad2" name="Edad2" value=""><br><br>
+        <div class="d-flex justify-content-between align-items-center">
+        <a href="jacko_01.html"><button type="button" id="boton">Update</a>
+        </form>
+        </div>
+        </td>
+    </tr>
+    </table>
+    </div>
+    <br>
+    <div>
+        <table border="2">
+            <tr>
+                <td>
+        <h1>LP</h1>
+        <form action="jacko_02.html">
+        <label for="Disco">Disco: </label><br>
+        <input type="text" id="Disco" name="Disco" value=""><br>
+        <label for="N_unidades">Nº unidades:</label><br>
+        <input type="text" id="N_unidades" name="N_unidades" value=""><br><br>
+        <div class="d-flex justify-content-between align-items-center">
+        <a href="jacko_02.html"><button type="button" id="boton">Comprar</a>
+        </form>
+        </div>
+        </td>
+    </tr>
+    </table> 
+    </div>
+    <br>
+    <div>
+        <table border="2">
+            <tr>
+                <td>
+        <h1>Biografía</h1>
+        <form action="jacko_03.html">
+        <label for="Año">Año publicado: </label><br>
+        <input type="text" id="Año" name="Año" value=""><br>
+        <label for="F_tit">Fecha título:</label><br>
+        <input type="text" id="F_tit" name="F_tit" value=""><br><br>
+        <div class="d-flex justify-content-between align-items-center">
+        <a href="jacko_03.html"><button type="button" id="boton">Enviar</a>
+        </div>
+        </td>
+    </form>
+    </tr>
+    </table> 
+    </div>
+</body>
+</html>

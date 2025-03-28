@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>MJ2</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='utilidades1.js'></script>
+    <script>
+        function cargarDatos() 
+        {
+            setValue("Edad2",parseInt(getValue("Edad2"))+1 );
+            setValue("Disco",getValue("Disco"));
+            setValue("N_unidades",getValue("N_unidades"));
+            setValue("Edad1",parseInt(getValue("Edad1"))+ 1);    
+            }
+            </script>
+</head>
+<body onload="cargarDatos()">
+
+    <div>
+    <label for="Disco">Disco: </label><br>
+    <input type="text" id="Resul_Disco" name="Resul_Disco" value="" readonly><br>
+    <label for="N_unidades">Nº unidades:</label><br>
+    <input type="text" id="FIN_N_unidades" name="FIN_N_unidades" value="" readonly><br>
+    <label for="presio">Precio:</label><br>
+    <input type="text" id="presio" name="presio" value=""><br>
+    <img src="images.jfif" width="400px" height="400px">
+    <a href="jacko_04.html"><button type="button" id="boton">FIN</a>
+    </div>
+    <form action="jacko_04.html">
+        <input type="hidden" name="Disco" id="Disco">
+        <input type="hidden" name="N_unidades" id="N_unidades">
+</body>
+</html>

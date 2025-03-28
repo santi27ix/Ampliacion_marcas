@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+</head>
+<body>
+    <h1>Introduce un número (1 - 100)</h1>
+    <input type="number" id="input">
+    <button id="Boton">DAME</button>
+    <p id="parrafo">Mi párrafo</p>
+    <p id="parrafo2">Párrafo2</p>
+    <img id="imagen1" src="e5a978b8-6772-4c85-a50e-15581af7d483.png" width="400px" height="400px">
+    <button id="boton2">Cambia!</button>
+    <button id="boton3">Suena!</button>
+    <button id="boton4">Para!</button>
+    <script>
+        //NUM ALEATORIO ENTRE 1 Y 100
+    const Numero_Oculto = Math.floor(Math.random()*100)+1;
+    const constMiparrafo = document.getElementById('parrafo');
+    let constintentos = 0;
+    const constMiparrafo2 = document.getElementById('parrafo2');
+    const constBoton = document.getElementById('Boton');
+    const constBoton2 = document.getElementById('boton2');
+    const constBoton3 = document.getElementById('boton3');
+    const constBoton4 = document.getElementById('boton4');
+    const constInput = document.getElementById('input');
+    const imagen1 = document.getElementById('imagen1');
+    constMiparrafo.textContent = 'El número oculto es ' + Numero_Oculto;
+    constMiparrafo2.textContent = 'El número de intentos es ' + constintentos;
+    var audio = new Audio();
+    audio.src = "All Goofy Ahh Sounds.mp3"; 
+    constBoton3.addEventListener('click', () =>{          
+            audio.pause();
+
+            });
+
+    constBoton3.addEventListener('click', () =>{
+
+        audio.play();
+
+        });
+
+    constBoton2.addEventListener('click', () =>{
+
+
+        imagen1.src = "images.jpg";
+
+
+
+    });
+    constBoton.addEventListener( 'click', () => {
+        const numero_input = parseInt (constInput.value);
+
+        // acierta
+        /*
+            caliente/frio
+        
+            quemando    +-3
+            muy caliente    +-8
+            caliente    +-13
+            templao +-18
+            fresquibiris    +-23
+            frio +-28
+        */
+       
+       while (constintentos < 8 && Numero_Oculto!=numero_input){
+
+        if (Numero_Oculto==numero_input)
+            {
+                constMiparrafo.textContent = 'ENHORABUENA DE LA BUENA';
+                constMiparrafo.style.color = "green";
+            }
+        else if (Math.abs(Numero_Oculto-numero_input) < 3)
+            {
+                constMiparrafo.textContent = 'QUEMANDO!!!!';
+                constMiparrafo.style.color = "red";
+                parseInt(constintentos+1);
+            }
+        else if (Math.abs(Numero_Oculto-numero_input) < 8)
+        {
+            constMiparrafo.textContent = 'Muy Caliente!!!!';
+            constMiparrafo.style.color = "orange";
+            parseInt(constintentos+1);
+        }
+        else if (Math.abs(Numero_Oculto-numero_input) < 13)
+        {
+            constMiparrafo.textContent = 'Caliente!!!!';
+            constMiparrafo.style.color = "yellow";
+            parseInt(constintentos+1);
+        }
+        else if (Math.abs(Numero_Oculto-numero_input) < 18)
+        {
+            constMiparrafo.textContent = 'Templao!!!!';
+            constMiparrafo.style.color = "";
+            parseInt(constintentos+1);
+        }
+        else if (Math.abs(Numero_Oculto-numero_input) < 23)
+        {
+            constMiparrafo.textContent = 'Fresquibiris!!!!';
+            constMiparrafo.style.color = "blue";
+            parseInt(constintentos+1);
+        }
+        else
+        {
+            constMiparrafo.textContent = 'Frío!!!!';
+            constMiparrafo.style.color = "purple";
+            parseInt(constintentos+1);
+        }      
+    }
+        }
+
+    );
+    </script>
+</body>
+</html>

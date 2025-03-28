@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Push Your Luck Solitary</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        #contenedor {
+            text-align: center;
+            padding: 20px;
+            background: rgb(255, 255, 255);
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        #contenedor div {
+            margin: 10px 0;
+        }
+        button {
+            margin: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #ffd900;
+            color: rgb(0, 0, 0);
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        button:hover:not(:disabled) {
+            background-color: #ffc400;
+        }
+        .carta {
+            font-size: 24px;
+            font-weight: bold;
+            padding: 15px;
+            border: 2px solid #000;
+            border-radius: 10px;
+            display: inline-block;
+            margin-top: 10px;
+            width: 100px;
+            height: 150px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .carta.rojo {
+            color: red;
+        }
+        .carta.negro {
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <div id="contenedor">
+        <div id="vidas">Número de vidas: 3</div>
+        <div id="cartasLevantadas">Contador de cartas levantadas: 0</div>
+       <center><div id="cartaActual" class="carta">Carta actual:</div></center> 
+        <button id="ALTA">ALTA (15)</button>
+        <button id="BAJA">BAJA (15)</button>
+        <button id="MISMO_COLOR">MISMO COLOR (5)</button>
+        <button id="DISTINTO_COLOR">DISTINTO COLOR (5)</button>
+        <button id="SUMA_11">SUMA < 11 (10)</button>
+        <button id="COMODIN">COMODÍN (3)</button>
+        <button id="PLANTARSE">PLANTARSE</button>
+    </div>
+    <script>
+        // Constantes para las cartas
+        const valores = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
+        const palos = ["corazones", "diamantes", "tréboles", "picas"];
+        const simbolos = {
+            corazones: "♥",
+            diamantes: "♦",
+            tréboles: "♣",
+            picas: "♠",
+        };
+
+        // Variables globales
+        let vidas = 3;
+        let cartasLevantadas = 0;
+        let contadorBotones = {
+            ALTA: 15,
+            BAJA: 15,
+            MISMO_COLOR: 5,
+            DISTINTO_COLOR: 5,
+            SUMA_11: 10,
+            COMODIN: 3,
+        };
+        let comboRacha = 0;
+        let cartaActual = generarCarta();
+
+        function generarCarta() {
+            const valor = valores[Math.floor(Math.random() * valores.length)];
+            const palo = palos[Math.floor(Math.random() * palos.length)];
+            return { valor, palo };
+        }
+
+        function valorNumerico(carta) {
+            if (carta.valor === "A") return 1;
+            if (["J", "Q", "K"].includes(carta.valor)) return 10;
+            return parseInt(carta.valor);
+        }
+
+        function mismoColor(carta1, carta2) {
+            const colores = { corazones: "rojo", diamantes: "rojo", tréboles: "negro", picas: "negro" };
+            return colores[carta1.palo] === colores[carta2.palo];
+        }
+
+        // Actualización de la interfaz
+        function actualizarInterfaz() {
+            document.getElementById("vidas").textContent = `Número de vidas: ${vidas}`;
+            document.getElementById("cartasLevantadas").textContent = `Contador de cartas levantadas: ${cartasLevantadas}`;
+            
+            // Actualizar visualización de la carta
+            const cartaDiv = document.getElementById("cartaActual");
+            cartaDiv.innerHTML = `
+                <span>${cartaActual.valor}</span>
+                <span>${simbolos[cartaActual.palo]}</span>
+            `;
+            cartaDiv.className = `carta ${["corazones", "diamantes"].includes(cartaActual.palo) ? "rojo" : "negro"}`;
+
+            Object.keys(contadorBotones).forEach((boton) => {
+                const botonElemento = document.getElementById(boton);
+                botonElemento.textContent = `${boton.replace('_', ' ')} (${contadorBotones[boton]})`;
+                botonElemento.disabled = contadorBotones[boton] === 0;
+            });
+        }
+
+        // Manejo de los botones
+        function manejarBoton(opcion) {
+            if (vidas === 0) return;
+            const nuevaCarta = generarCarta();
+            let acierto = false;
+
+            switch (opcion) {
+                case "ALTA":
+                    acierto = valorNumerico(nuevaCarta) > valorNumerico(cartaActual);
+                    break;
+                case "BAJA":
+                    acierto = valorNumerico(nuevaCarta) < valorNumerico(cartaActual);
+                    break;
+                case "MISMO_COLOR":
+                    acierto = mismoColor(nuevaCarta, cartaActual);
+                    break;
+                case "DISTINTO_COLOR":
+                    acierto = !mismoColor(nuevaCarta, cartaActual);
+                    break;
+                case "SUMA_11":
+                    acierto = valorNumerico(nuevaCarta) + valorNumerico(cartaActual) < 11;
+                    break;
+                case "COMODIN":
+                    cartaActual = nuevaCarta;
+                    actualizarInterfaz();
+                    return;
+                case "PLANTARSE":
+                    alert(`¡Fin de la partida! Puntuación final: ${cartasLevantadas}`);
+                    return;
+            }
+
+            if (opcion !== "COMODIN") contadorBotones[opcion]--;
+
+            if (acierto) {
+                cartasLevantadas++;
+                cartaActual = nuevaCarta;
+                comboRacha++;
+
+                if (comboRacha === 5) {
+                    Object.keys(contadorBotones).forEach((boton) => {
+                        if (boton !== "COMODIN") contadorBotones[boton]++;
+                    });
+                    comboRacha = 0;
+                }
+            } else {
+                vidas--;
+                comboRacha = 0;
+
+                if (vidas === 0) {
+                    alert("¡Te has quedado sin vidas! Puntuación final: 0");
+                    return;
+                }
+            }
+
+            actualizarInterfaz();
+        }
+
+        // Inicialización
+        document.addEventListener("DOMContentLoaded", () => {
+            Object.keys(contadorBotones).forEach((boton) => {
+                document.getElementById(boton).addEventListener("click", () => manejarBoton(boton));
+            });
+            document.getElementById("PLANTARSE").addEventListener("click", () => manejarBoton("PLANTARSE"));
+            actualizarInterfaz();
+        });
+    </script>
+</body>
+</html>

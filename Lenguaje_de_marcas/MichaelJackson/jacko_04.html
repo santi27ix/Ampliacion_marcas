@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+    <script src="bower_components/sweetalert2/dist/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="bower_components/sweetalert2/dist/sweetalert2.min.css">
+    <script>
+        Swal.fire({
+  title: "Felicidades",
+  text: "Has clickado el logo de MJ!",
+  icon: "success"
+                });
+
+    </script>
+</head>
+<body>
+    <table align="center" title="LP" style="padding-top: 120px;">        
+        <td style="border: 4px dotted blue;">
+            <div>
+            <p style="font-size: 26px;">LP</p>
+                <label for="Disco">Disco: </label><br>
+                <input type="text" id="Disco" name="Disco" value=""><br>
+                <label for="N_unidades">Nº unidades:</label><br>
+                <input type="text" id="N_unidades" name="N_unidades" value=""><br>
+                <label for="presio">Precio:</label><br>
+                <input type="text" id="presio" name="presio" value=""><br>
+            </div>
+            </td>
+        
+            <td style="border: 4px dashed greenyellow;">
+            <div>
+                <p style="font-size: 26px;">Biología</p>
+                <label for="Año">Año publicado: </label><br>
+                <input type="text" id="Año" name="Año" value=""><br>
+                <label for="F_tit">Fecha título:</label><br>
+                <input type="text" id="F_tit" name="F_tit" value=""><br><br>
+                <label for="rango"  class="form-label text-start fs-3">Rango de nivel:</label><br>
+                <input type="range" min="0" max="200" name="rango" id="rango"><br>
+                </div>
+            </td>
+    </table>
+<img src="Michael-Jackson-Logo.png" width="400px" height="300px" style="padding-left: 450px; cursor: pointer;" id="LogoMJ">
+    <a href="jacko_01.html"><button type="button" id="boton">FIN</a>
+</body>
+</html>

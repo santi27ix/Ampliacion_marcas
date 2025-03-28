@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>FORMULARIO</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script type="text/javascript" src="utilidades1.js"></script>
+    <script>
+        function cargarDatos() 
+        {
+            setValue("sResulNombre",getValue("fname"))
+            setValue("sResulApellido",getValue("lname"))
+            setValue("sResulNum",getValue("Num"))
+        }
+    </script>
+</head>
+<body onload="cargarDatos()">
+        <div>
+            El nombre que ha viajado es:
+            <input type="text" name="sResulNombre">
+        </div>
+        <div>
+            El apellido que ha viajado es:
+            <input type="text" name="sResulApellido">
+        </div>
+        <div>
+            Introduzca un número de teléfono
+            <input type="text" name="Num">
+        </div>
+        <form action="f03.html">
+        <div>
+            <input type="submit" value="DAME">
+        </form>
+        </div>
+</body>
+</html>
+Crear f03 que pase nombre, apellido y un teléfono, que se introduce por primera vez en f02

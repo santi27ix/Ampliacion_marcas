@@ -1,0 +1,6 @@
+{
+    "compile-hero.disable-compile-files-on-did-save-code": false,
+    "javascript.format.semicolons": "ignore",
+    "snyk.trustedFolders": [],
+    "editor.unicodeHighlight.includeComments": true
+}
