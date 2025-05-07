@@ -1,0 +1,32 @@
+
+
+
+
+/*esto es para el cuerpo del HTML*/
+body {
+    background-color: lightblue;
+  }
+
+  h1 {
+    color: white;
+    text-align: center;
+  }
+  
+  p {
+    font-family: verdana;
+    font-size: 20px;
+  }
+  .grandegrande{
+    font-family: Arial black;
+    font-size: 72px;
+  }
+  .medianamediana{
+    font-family: Arial black;
+    font-size: 12px;
+  }
+  .color {
+    color: green;
+    }
+    #choco {
+      color: chocolate;
+    }
