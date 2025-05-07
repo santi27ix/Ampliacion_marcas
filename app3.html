@@ -16,7 +16,23 @@
     </style>
     <script>
         const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');  
         
+        let p1 = {
+            x: 50,
+            y: 150,
+            w : 30,
+            h : 60
+        };       
+
+        function pintarJugador() 
+        {
+            ctx.fillstyle = 'red'; 
+            ctx.fillRect(p1.x,p1.y,p1.w,p1.h);   
+        }
+
+        pintarJugador();
+
     </script>
 </head>
 <body>
