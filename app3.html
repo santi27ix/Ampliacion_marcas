@@ -25,14 +25,41 @@
             h : 60
         };       
 
+        const Diana =
+        {
+            x: 700,
+            y: 150,
+            w: 50,
+            h:50,
+            imagen: new Image()
+        };
+
+        const Circulo =
+        {
+            x: 600,
+            y: 350,
+            w: 20,
+            h:30,
+            imagen: new Image()
+        };
+
+
+
+
+        Diana.imagen.src = "diana.png"
+
         function pintarJugador() 
         {
             ctx.fillstyle = 'red'; 
             ctx.fillRect(p1.x,p1.y,p1.w,p1.h);   
         }
-
+        function pintarDiana() 
+        {
+            ctx.drawImage(diana.imagen,diana.x,diana.y,diana.w,diana.h) 
+        }
+        diana.imagen.onload = function(){pintarDiana();};
         pintarJugador();
-
+        pintarDiana();
     </script>
 </head>
 <body>
