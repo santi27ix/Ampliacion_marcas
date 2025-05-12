@@ -42,24 +42,27 @@
             h:30,
             imagen: new Image()
         };
-
-
-
-
         Diana.imagen.src = "diana.png"
 
         function pintarJugador() 
         {
             ctx.fillstyle = 'red'; 
             ctx.fillRect(p1.x,p1.y,p1.w,p1.h);   
-        }
+        };
         function pintarDiana() 
         {
             ctx.drawImage(diana.imagen,diana.x,diana.y,diana.w,diana.h) 
-        }
+        };
+        function pintarCirculo() 
+        {
+            ctx.fillstyle = 'black'; 
+            ctx.fillRect(Circulo.x,Circulo.y,Circulo.w,Circulo.h);   
+        };
         diana.imagen.onload = function(){pintarDiana();};
+        
         pintarJugador();
         pintarDiana();
+        pintarCirculo();
     </script>
 </head>
 <body>
